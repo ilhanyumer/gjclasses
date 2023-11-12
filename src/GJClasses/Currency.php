@@ -61,12 +61,12 @@ class Currency
 
         } elseif ($this->source === 'erh') {
 
-            $full_url = 'https://api.exchangerate.host/convert?from=' . $from_currency . '&to=' . $to_currency;
+            $full_url = 'https://api.exchangerate.host/convert?access_key=' . $this->api_key . '&from=' . $from_currency . '&to=' . $to_currency . '&amount=1';
             $remote = new Remote();
             $result = $remote->getFileContents($full_url);
             if ($result === false) return false;
             $json_result = json_decode($result, true);
-            $conversion_rate = $json_result['info']['rate'];
+            $conversion_rate = $json_result['info']['quote'];
 
         }
 
